@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -12,9 +13,21 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        setupPlayGameButton();
     }
 
     public static Intent makeIntent(Context context){
         return new Intent(context, MainMenu.class);
+    }
+
+
+    private void setupPlayGameButton() {
+        Button btn = findViewById(R.id.btnPlayGame);
+        btn.setOnClickListener(v -> {
+            Intent intent = GameActivity.makeIntent(MainMenu.this);
+            startActivity(intent);
+        });
+
     }
 }
