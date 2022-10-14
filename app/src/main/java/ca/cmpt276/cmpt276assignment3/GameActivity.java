@@ -15,10 +15,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import ca.cmpt276.cmpt276assignment3.model.Game;
+
 public class GameActivity extends AppCompatActivity {
 
     private static final int NUM_ROWS = 5;
-    private static final int NUM_COLS = 5;
+    private static final int NUM_COLS = 6;
+    Game currGame;
 
     Button[][] buttons = new Button[NUM_ROWS][NUM_COLS];
 
@@ -26,13 +29,13 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        poplulateButtons();
+        currGame = new Game(5,6,2); // temp values we'll fix it later
+        populateButtons();
     }
 
 
     // base code comes from this demo video https://www.youtube.com/watch?v=4MFzuP1F-xQ
-    private void poplulateButtons() {
+    private void populateButtons() {
         TableLayout table = findViewById(R.id.tableForButtons);
         for (int row = 0; row < NUM_ROWS; row++){
             TableRow tableRow = new TableRow(this);
@@ -52,12 +55,15 @@ public class GameActivity extends AppCompatActivity {
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f
                 ));
+
+                // this is just for knowing the cords
                 button.setText("" + col + ", " + row);
+
                 button.setPadding(0, 0, 0, 0);
                 button.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View V){
-                        gridButtonClicked(FINAL_COL, FINAL_ROW);
+                        gridButtonClicked(FINAL_ROW, FINAL_COL);
 
                     }
                 });
@@ -69,24 +75,38 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    private void gridButtonClicked(int col, int row) {
+    private void gridButtonClicked(int row, int col) {
+
         Toast.makeText(this, "Button clicked: " + col + ", " + row, Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
-        // does not scale img
-//        button.setBackgroundResource(R.drawable.space_robot);
-
+        int[] currButtonLocation = new int[2];
+        currButtonLocation[0] = row;
+        currButtonLocation[1] = col;
 
         // lock Button Sizes:
         lockButtonSizes();
 
-        // scale image to button
-        int newWidth = button.getWidth();
-        int newHeight = button.getHeight();
-        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.space_robot);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
-        Resources resource = getResources();
-        button.setBackground(new BitmapDrawable(resource, scaledBitmap));
+        // scale image to button (do this if its a mine)
+        // if(button cords in mine locations) update the game to remove it and also decrease revealed buttons counts, then display image
+        // option 1 loop through rows and columns check if button has tag (null if not revealed yet)  then set text to -1 and set that object to -1 (probably should use object Integer
+        // else scan and find display number of mines
+        //
+
+        if(currGame.isInMineLocations(currButtonLocation)){
+            // display mine img on button
+            int newWidth = button.getWidth();
+            int newHeight = button.getHeight();
+            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.space_robot);
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+            Resources resource = getResources();
+            button.setBackground(new BitmapDrawable(resource, scaledBitmap));
+
+        }
+        else{ // no mine at location
+            int temp = currGame.scan(row, col);
+            button.setText(Integer.toString(temp));
+        }
 
         // change text on button
     }
