@@ -13,14 +13,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.cmpt276.cmpt276assignment3.model.Game;
 
 public class GameActivity extends AppCompatActivity {
 
+    // TODO use options to change these values including mines
     private static final int NUM_ROWS = 6;
     private static final int NUM_COLS = 7;
+    private static final int MINES = 5;
+    private int minesFound = 0;
+    private int usedScans = 0;
     Game currGame;
 
     Button[][] buttons = new Button[NUM_ROWS][NUM_COLS];
@@ -30,7 +35,16 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         currGame = new Game(6,7,5); // temp values we'll fix it later
+        instantiateTextViews();
         populateButtons();
+    }
+
+    private void instantiateTextViews() {
+        TextView scansUsed = findViewById(R.id.tvScans);
+        scansUsed.setText("Scans used: 0");
+
+        TextView foundMines = findViewById(R.id.tvFoundMines);
+        foundMines.setText("Found 0 out of " + MINES + " Mines" );
     }
 
 
@@ -130,11 +144,29 @@ public class GameActivity extends AppCompatActivity {
 
                 }
             }
+            minesFound++;
+            TextView foundMines = findViewById(R.id.tvFoundMines);
+            foundMines.setText("Found " + minesFound +" out of " + MINES + " Mines" );
         }
+
         else{ // no mine at location
-            int minesInArea = currGame.scan(row, col);
-            button.setText(Integer.toString(minesInArea));
-            button.setTag(minesInArea);
+            Button currButton = buttons[row][col];
+            if(currButton == null){ // not scanned yet
+                int minesInArea = currGame.scan(row, col);
+                button.setText(Integer.toString(minesInArea));
+                button.setTag(minesInArea);
+
+                usedScans++;
+                TextView scansUsed = findViewById(R.id.tvScans);
+                scansUsed.setText("Scans used: " + usedScans);
+            }
+//            int minesInArea = currGame.scan(row, col);
+//            button.setText(Integer.toString(minesInArea));
+//            button.setTag(minesInArea);
+//
+//            usedScans++;
+//            TextView scansUsed = findViewById(R.id.tvScans);
+//            scansUsed.setText("Scans used: " + usedScans);
         }
 
         // change text on button
