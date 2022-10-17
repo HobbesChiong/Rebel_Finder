@@ -1,7 +1,8 @@
 package ca.cmpt276.cmpt276assignment3.model;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
 // if button is clicked we check is that row/col is in the mine locations
 
 public class Game {
@@ -23,10 +24,9 @@ public class Game {
 
     private void placeMines(){
         Random r = new Random(); // referring to same obj? need to get a random number and detach from obj
-        int c = 0; // count of added mines
+        int c = 1; // count of added mines
         int currRow;
         int currColumn;
-
 
         while(c <= mines){
 
@@ -49,13 +49,21 @@ public class Game {
     private void startGame(){
         placeMines();
     }
-    private void updateGame(int row, int column){
-        int[] currMineLocation = new int[2];
-        currMineLocation[0] = row;
-        currMineLocation[1] = column;
+    public void updateGame(int[] currLocation){
+//        int[] currMineLocation = new int[2];
+//        currMineLocation[0] = row;
+//        currMineLocation[1] = column;
 
         // junit test this
-        mineLocations.remove(currMineLocation);
+        // removes the mine location
+
+        for (int i = 0 ; i < mineLocations.size(); i++) {
+            if (Arrays.equals(mineLocations.get(i), currLocation)) {
+                mineLocations.remove(i);
+                break;
+            }
+        }
+
 
         // reduce hidden mine in rest of counts
 
@@ -87,6 +95,7 @@ public class Game {
         if(mineLocations.isEmpty()){
             return false;
         }
+
         // infinite loop but why?
         for(int[] mine : mineLocations){
             // check if the mine location is already in the grid
