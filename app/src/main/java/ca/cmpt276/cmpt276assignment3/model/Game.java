@@ -46,16 +46,10 @@ public class Game {
 
         }
     }
-    private void startGame(){
-        placeMines();
-    }
+//    private void startGame(){
+//        placeMines();
+//    }
     public void updateGame(int[] currLocation){
-//        int[] currMineLocation = new int[2];
-//        currMineLocation[0] = row;
-//        currMineLocation[1] = column;
-
-        // junit test this
-        // removes the mine location
 
         for (int i = 0 ; i < mineLocations.size(); i++) {
             if (Arrays.equals(mineLocations.get(i), currLocation)) {
@@ -63,10 +57,6 @@ public class Game {
                 break;
             }
         }
-
-
-        // reduce hidden mine in rest of counts
-
 
     }
     public int scan(int row, int column){
@@ -91,6 +81,7 @@ public class Game {
         }
         return res;
     }
+
     public boolean isInMineLocations(int[] currMineLocation){
         if(mineLocations.isEmpty()){
             return false;
@@ -105,6 +96,7 @@ public class Game {
         }
         return false;
     }
+
 
 // might need unknown yet
 //    // Singleton Support

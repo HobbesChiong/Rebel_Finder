@@ -1,7 +1,9 @@
 package ca.cmpt276.cmpt276assignment3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -41,10 +43,11 @@ public class GameActivity extends AppCompatActivity {
 
     private void instantiateTextViews() {
         TextView scansUsed = findViewById(R.id.tvScans);
-        scansUsed.setText("Scans used: 0");
+        scansUsed.setText(R.string.scansused);
 
         TextView foundMines = findViewById(R.id.tvFoundMines);
-        foundMines.setText("Found 0 out of " + MINES + " Mines" );
+        String res ="Found 0 out of " + MINES + " Mines";
+        foundMines.setText(res);
     }
 
 
@@ -71,7 +74,7 @@ public class GameActivity extends AppCompatActivity {
                 ));
 
                 // this is just for knowing the cords
-                button.setText("" + row + ", " + col);
+                // button.setText("" + row + ", " + col);
 
                 button.setPadding(0, 0, 0, 0);
                 button.setOnClickListener(new View.OnClickListener(){
@@ -89,6 +92,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private void gridButtonClicked(int row, int col) {
 
         Toast.makeText(this, "Button clicked: " + row + ", " + col, Toast.LENGTH_SHORT).show();
@@ -144,29 +148,31 @@ public class GameActivity extends AppCompatActivity {
 
                 }
             }
+            // TODO when mines == full then call game won
             minesFound++;
             TextView foundMines = findViewById(R.id.tvFoundMines);
-            foundMines.setText("Found " + minesFound +" out of " + MINES + " Mines" );
+            String res = "Found " + minesFound +" out of " + MINES + " Mines";
+            foundMines.setText(res);
+            if(minesFound == MINES){
+                // alert dialog with the win and dismissing sets back to main menu
+                FragmentManager manager = getSupportFragmentManager();
+                MessageFragment dialog = new MessageFragment();
+                dialog.show(manager, "MessageDialog");
+            }
         }
 
         else{ // no mine at location
             Button currButton = buttons[row][col];
-            if(currButton == null){ // not scanned yet
+            if(currButton.getTag() == null){ // not scanned yet
                 int minesInArea = currGame.scan(row, col);
                 button.setText(Integer.toString(minesInArea));
                 button.setTag(minesInArea);
 
                 usedScans++;
                 TextView scansUsed = findViewById(R.id.tvScans);
-                scansUsed.setText("Scans used: " + usedScans);
+                String res = "Scans used: " + usedScans;
+                scansUsed.setText(res);
             }
-//            int minesInArea = currGame.scan(row, col);
-//            button.setText(Integer.toString(minesInArea));
-//            button.setTag(minesInArea);
-//
-//            usedScans++;
-//            TextView scansUsed = findViewById(R.id.tvScans);
-//            scansUsed.setText("Scans used: " + usedScans);
         }
 
         // change text on button
