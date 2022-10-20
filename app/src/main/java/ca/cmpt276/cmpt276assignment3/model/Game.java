@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-// if button is clicked we check is that row/col is in the mine locations
+
 
 public class Game {
-    private static Game instance;
+
     int[][] grid; // rows x columns
     int mines;
     int rows;
@@ -15,7 +15,7 @@ public class Game {
 
     public Game(int rows, int columns, int mines){
         grid = new int[rows][columns];
-//        mineLocations = new int[mines][2];
+
         this.mines = mines;
         this.rows = rows;
         this.columns = columns;
@@ -46,9 +46,7 @@ public class Game {
 
         }
     }
-//    private void startGame(){
-//        placeMines();
-//    }
+
     public void updateGame(int[] currLocation){
 
         for (int i = 0 ; i < mineLocations.size(); i++) {
@@ -97,18 +95,5 @@ public class Game {
         return false;
     }
 
-
-// might need unknown yet
-//    // Singleton Support
-//    // basis of this code is from https://www.youtube.com/watch?v=XqeKtX8Aa94
-//    private Game(){
-//
-//    }
-//    public static Game getInstance(){
-//        if (instance == null){
-//            instance = new Game();
-//        }
-//        return instance;
-//    }
 
 }
