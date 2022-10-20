@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -22,7 +23,6 @@ import ca.cmpt276.cmpt276assignment3.model.Game;
 public class GameActivity extends AppCompatActivity {
 
     // TODO use options to change these values including mines
-//    private final int[] boardSize = OptionsScreen.getBoardSize(this);
     private int NUM_ROWS;
     private int NUM_COLS;
     private int MINES;
@@ -115,7 +115,9 @@ public class GameActivity extends AppCompatActivity {
         //
 
         if(currGame.isInMineLocations(currButtonLocation)){ // mine at location
-
+            // plays sound on click
+            MediaPlayer mediaPlayerRebel = MediaPlayer.create(this, R.raw.find_rebel_noise);
+            mediaPlayerRebel.start();
 
             // display mine img on button
             int newWidth = button.getWidth();
@@ -167,6 +169,10 @@ public class GameActivity extends AppCompatActivity {
         }
 
         else{ // no mine at location
+            // plays sound on click
+            MediaPlayer mediaPlayerNoRebel = MediaPlayer.create(this, R.raw.scan_sound);
+            mediaPlayerNoRebel.start();
+
             Button currButton = buttons[row][col];
             if(currButton.getTag() == null){ // not scanned yet
                 int minesInArea = currGame.scan(row, col);
@@ -178,6 +184,7 @@ public class GameActivity extends AppCompatActivity {
                 String res = "Scans used: " + usedScans;
                 scansUsed.setText(res);
             }
+
         }
 
         // change text on button
