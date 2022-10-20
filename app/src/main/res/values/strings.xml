@@ -10,7 +10,14 @@
     <string name="found_mines">Found Mines</string>
     <string name="scans_used">Scans used</string>
     <string name="congratulations_you_won_rebel_finder">Congratulations you won Rebel Finder</string>
-    <string name="scansused">Scans used: 0</string>
+    <string name="scansUsed">Scans used: 0</string>
     <string name="select_board_size">Select Board Size</string>
     <string name="select_amount_of_mines">Select Amount of Mines</string>
+    <string name="link">Made by Hobbes Chiong, student in CMPT 276 (Intro to Software Engineering) (<a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">Link to Website</a>)</string>
+    <string name="resource_bio"> Trophy icon from: (<a href="https://www.istockphoto.com/photos/trophy">Link to Website</a>)</string>
+    <string name="HELP">Help</string>
+    <string name="first_go_to_options_to_select_the_board_size_and_amount_of_rebels_for_your_game_afterwards_exit_through_the_back_button_and_press_play_game_to_start_a_game_your_goal_is_to_find_all_the_hidden_rebels_with_the_least_amount_of_scans_you_trigger_a_scan_when_you_click_a_button_and_there_is_no_rebel_there_the_scan_checks_for_rebels_in_its_row_and_column_and_the_number_it_shows_is_the_amount_of_rebels_within_its_row_and_column_if_the_button_has_a_hidden_rebel_it_won_apos_t_trigger_a_scan_but_you_can_click_on_it_afterwards_to_trigger_a_scan_the_game_tracks_your_total_scans_and_hidden_rebels_first_once_you_find_all_the_hidden_rebels_you_win">First go to Optionsto select the board size and amount of Rebels for your game. Afterwards exit through the back button and press Play Gameto start a game. Your goal is to find all the hidden Rebels with the least amount of scans. You trigger a scan when you click a button and There is no Rebel there. The scan checks for Rebels in its row and column and the number it shows is the amount of rebels within its row and column. If the button has a hidden Rebel it won\'t trigger a scan but you can click on it afterwards to trigger a scan. The game tracks your total scans and hidden rebels first. Once you find all the hidden rebels you win!</string>
+    <string name="instructions_for_rebel_finder">Instructions for Rebel Finder</string>
+    <string name="resources">Resources</string>
+    <string name="author">Author</string>
 </resources>
