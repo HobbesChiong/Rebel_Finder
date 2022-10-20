@@ -16,6 +16,15 @@ public class MainMenu extends AppCompatActivity {
 
         setupPlayGameButton();
         setupOptionsButton();
+        setupHelpButton();
+    }
+
+    private void setupHelpButton() {
+        Button btn = findViewById(R.id.btnHelp);
+        btn.setOnClickListener(v -> {
+            Intent intent = HelpScreen.makeIntent(MainMenu.this);
+            startActivity(intent);
+        });
     }
 
     private void setupOptionsButton() {

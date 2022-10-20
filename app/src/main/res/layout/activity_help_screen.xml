@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpScreen"
+    android:background="@drawable/help_bg">
+
+    <TextView
+        android:id="@+id/tvHelp"
+        android:layout_width="82dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/HELP"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="511dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="248dp"
+        android:text="@string/link"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="116dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="212dp"
+        android:text="@string/author"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="116dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="312dp"
+        android:text="@string/resources"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="346dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/instructions_for_rebel_finder"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="682dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="100dp"
+        android:text='@string/first_go_to_options_to_select_the_board_size_and_amount_of_rebels_for_your_game_afterwards_exit_through_the_back_button_and_press_play_game_to_start_a_game_your_goal_is_to_find_all_the_hidden_rebels_with_the_least_amount_of_scans_you_trigger_a_scan_when_you_click_a_button_and_there_is_no_rebel_there_the_scan_checks_for_rebels_in_its_row_and_column_and_the_number_it_shows_is_the_amount_of_rebels_within_its_row_and_column_if_the_button_has_a_hidden_rebel_it_won_apos_t_trigger_a_scan_but_you_can_click_on_it_afterwards_to_trigger_a_scan_the_game_tracks_your_total_scans_and_hidden_rebels_first_once_you_find_all_the_hidden_rebels_you_win'
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="248dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="348dp"
+        android:text="@string/resource_bio"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

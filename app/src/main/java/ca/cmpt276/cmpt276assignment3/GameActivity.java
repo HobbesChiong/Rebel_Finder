@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -53,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void instantiateTextViews() {
         TextView scansUsed = findViewById(R.id.tvScans);
-        scansUsed.setText(R.string.scansused);
+        scansUsed.setText(R.string.scansUsed);
 
         TextView foundMines = findViewById(R.id.tvFoundMines);
         String res ="Found 0 out of " + MINES + " Mines";
@@ -99,7 +98,7 @@ public class GameActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void gridButtonClicked(int row, int col) {
 
-        Toast.makeText(this, "Button clicked: " + row + ", " + col, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Button clicked: " + row + ", " + col, Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
         int[] currButtonLocation = new int[2];
@@ -132,6 +131,7 @@ public class GameActivity extends AppCompatActivity {
 
             // loop over its columns
             Button currButton;
+
             for(int i = 0; i < NUM_COLS; i++){
                 currButton = buttons[row][i];
                 if(currButton.getTag() != null){
@@ -141,6 +141,7 @@ public class GameActivity extends AppCompatActivity {
                     currButton.setText(Integer.toString(currTag));
                 }
             }
+
             // loop over its columns (needs to be amt of row in the grid)
             for(int j = 0; j < NUM_ROWS; j++){
                 currButton = buttons[j][col];
