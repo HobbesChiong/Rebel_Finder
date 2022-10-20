@@ -23,20 +23,30 @@ import ca.cmpt276.cmpt276assignment3.model.Game;
 public class GameActivity extends AppCompatActivity {
 
     // TODO use options to change these values including mines
-    private static final int NUM_ROWS = 6;
-    private static final int NUM_COLS = 7;
-    private static final int MINES = 5;
+//    private final int[] boardSize = OptionsScreen.getBoardSize(this);
+    private int NUM_ROWS;
+    private int NUM_COLS;
+    private int MINES;
     private int minesFound = 0;
     private int usedScans = 0;
     Game currGame;
 
-    Button[][] buttons = new Button[NUM_ROWS][NUM_COLS];
+    Button[][] buttons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        currGame = new Game(6,7,5); // temp values we'll fix it later
+
+        // initialize board size
+        int[] boardSize = OptionsScreen.getBoardSize(this);
+        NUM_ROWS = boardSize[0];
+        NUM_COLS = boardSize[1];
+        buttons = new Button[NUM_ROWS][NUM_COLS];
+        MINES = OptionsScreen.getMines(this);
+
+
+        currGame = new Game(NUM_ROWS,NUM_COLS,MINES); // temp values we'll fix it later
         instantiateTextViews();
         populateButtons();
     }
@@ -77,13 +87,7 @@ public class GameActivity extends AppCompatActivity {
                 // button.setText("" + row + ", " + col);
 
                 button.setPadding(0, 0, 0, 0);
-                button.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View V){
-                        gridButtonClicked(FINAL_ROW, FINAL_COL);
-
-                    }
-                });
+                button.setOnClickListener(V -> gridButtonClicked(FINAL_ROW, FINAL_COL));
                 tableRow.addView(button);
                 buttons[row][col] = button;
 
@@ -148,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
 
                 }
             }
-            // TODO when mines == full then call game won
+
             minesFound++;
             TextView foundMines = findViewById(R.id.tvFoundMines);
             String res = "Found " + minesFound +" out of " + MINES + " Mines";

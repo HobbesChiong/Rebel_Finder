@@ -11,4 +11,6 @@
     <string name="scans_used">Scans used</string>
     <string name="congratulations_you_won_rebel_finder">Congratulations you won Rebel Finder</string>
     <string name="scansused">Scans used: 0</string>
+    <string name="select_board_size">Select Board Size</string>
+    <string name="select_amount_of_mines">Select Amount of Mines</string>
 </resources>

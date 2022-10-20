@@ -5,16 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
         setupPlayGameButton();
+        setupOptionsButton();
+    }
+
+    private void setupOptionsButton() {
+        Button btn = findViewById(R.id.btnOptions);
+        btn.setOnClickListener(v -> {
+            Intent intent = OptionsScreen.makeIntent(MainMenu.this);
+            startActivity(intent);
+        });
     }
 
     public static Intent makeIntent(Context context){
