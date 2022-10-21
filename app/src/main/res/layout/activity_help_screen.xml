@@ -75,8 +75,8 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="248dp"
-        android:layout_height="23dp"
+        android:layout_width="525dp"
+        android:layout_height="17dp"
         android:layout_marginTop="348dp"
         android:text="@string/resource_bio"
         android:textColor="#FFFFFF"

@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-// Help Screen Activity
+// Help Screen Activity contains information about the app
 
 public class HelpScreen extends AppCompatActivity {
 

@@ -1,5 +1,6 @@
 package ca.cmpt276.cmpt276assignment3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -14,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 // Options Screen activity which lets users change mines, board size and reset times played
+// the shared preferences "prefs" acts as a singleton for the rest of the app
+
 public class OptionsScreen extends AppCompatActivity {
 
     @Override
@@ -117,7 +120,7 @@ public class OptionsScreen extends AppCompatActivity {
         editor.apply();
 
     }
-    static public int getMines(Context c){
+    static public int getMines(@NonNull Context c){
         SharedPreferences prefs = c.getSharedPreferences("OptionsPrefs", MODE_PRIVATE);
 
         int defaultMines = c.getResources().getInteger(R.integer.default_num_mines);
