@@ -22,9 +22,9 @@ import android.widget.Toast;
 
 import ca.cmpt276.cmpt276assignment3.model.Game;
 
+// Activity that runs "Game" to let the user play Rebel Finder
 public class GameActivity extends AppCompatActivity {
 
-    // TODO use options to change these values including mines
     private int NUM_ROWS;
     private int NUM_COLS;
     private int MINES;

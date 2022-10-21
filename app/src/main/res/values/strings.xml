@@ -20,4 +20,5 @@
     <string name="instructions_for_rebel_finder">Instructions for Rebel Finder</string>
     <string name="resources">Resources</string>
     <string name="author">Author</string>
+    <string name="reset_stats">Reset Stats</string>
 </resources>

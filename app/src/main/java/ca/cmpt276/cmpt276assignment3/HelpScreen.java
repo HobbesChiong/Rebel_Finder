@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+// Help Screen Activity
+
 public class HelpScreen extends AppCompatActivity {
 
     @Override

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 
+// game class that runs the game Rebel Finder for the user
 
 public class Game {
 
@@ -22,6 +23,7 @@ public class Game {
         placeMines();
     }
 
+    // places mines by storing its coordinates in mineLocations
     private void placeMines(){
         Random r = new Random(); // referring to same obj? need to get a random number and detach from obj
         int c = 1; // count of added mines
@@ -47,6 +49,7 @@ public class Game {
         }
     }
 
+    // updates the game by removing the given mine which is the argument currLocation
     public void updateGame(int[] currLocation){
 
         for (int i = 0 ; i < mineLocations.size(); i++) {
@@ -57,10 +60,12 @@ public class Game {
         }
 
     }
+
+    // scans the rows and columns to check for mines
     public int scan(int row, int column){
         int res = 0;
         int[] currLocation = new int[2];
-        // loop over rows and ints
+
         // loop over row its rows
         for(int i = 0; i < columns; i++){
             currLocation[0] = row;
@@ -80,6 +85,7 @@ public class Game {
         return res;
     }
 
+    // checks if the current location has a hidden mine
     public boolean isInMineLocations(int[] currMineLocation){
         if(mineLocations.isEmpty()){
             return false;

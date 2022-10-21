@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+// Options Screen activity which lets users change mines, board size and reset times played
 public class OptionsScreen extends AppCompatActivity {
 
     @Override
