@@ -8,10 +8,12 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+// Options Screen activity which lets users change mines, board size and reset times played
 public class OptionsScreen extends AppCompatActivity {
 
     @Override
@@ -21,6 +23,15 @@ public class OptionsScreen extends AppCompatActivity {
 
         createMinesRadioButtons();
         createBoardSizeRadioButtons();
+        createResetButton();
+
+    }
+
+    private void createResetButton() {
+        Button btn = findViewById(R.id.btnResetStats);
+
+        btn.setOnClickListener(view -> setTimesPlayed(getApplicationContext(), 0));
+
 
     }
 
@@ -114,7 +125,18 @@ public class OptionsScreen extends AppCompatActivity {
         return prefs.getInt("Num mines", defaultMines);
     }
 
+    static public void setTimesPlayed(Context c, int timesPlayed){
+        SharedPreferences prefs = c.getSharedPreferences("OptionsPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("times played",timesPlayed);
+        editor.apply();
+    }
 
+    static public int getTimesPlayed(Context c){
+        SharedPreferences prefs = c.getSharedPreferences("OptionsPrefs", MODE_PRIVATE);
+
+        return prefs.getInt("times played", 0);
+    }
 
 
     public static Intent makeIntent(Context context){

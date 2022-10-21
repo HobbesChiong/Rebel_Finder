@@ -10,7 +10,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -19,10 +22,9 @@ import android.widget.Toast;
 
 import ca.cmpt276.cmpt276assignment3.model.Game;
 
+// Activity that runs "Game" to let the user play Rebel Finder
 public class GameActivity extends AppCompatActivity {
 
-    // TODO use options to change these values including mines
-//    private final int[] boardSize = OptionsScreen.getBoardSize(this);
     private int NUM_ROWS;
     private int NUM_COLS;
     private int MINES;
@@ -44,10 +46,16 @@ public class GameActivity extends AppCompatActivity {
         buttons = new Button[NUM_ROWS][NUM_COLS];
         MINES = OptionsScreen.getMines(this);
 
+        // set times played text view
+        TextView timesPlayed = findViewById(R.id.tvTimesPlayed);
+        String res ="Times Played: " + OptionsScreen.getTimesPlayed(this);
+        timesPlayed.setText(res);
+
 
         currGame = new Game(NUM_ROWS,NUM_COLS,MINES); // temp values we'll fix it later
         instantiateTextViews();
         populateButtons();
+
     }
 
     private void instantiateTextViews() {
@@ -98,7 +106,6 @@ public class GameActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void gridButtonClicked(int row, int col) {
 
-//        Toast.makeText(this, "Button clicked: " + row + ", " + col, Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
         int[] currButtonLocation = new int[2];
@@ -108,14 +115,10 @@ public class GameActivity extends AppCompatActivity {
         // lock Button Sizes:
         lockButtonSizes();
 
-        // scale image to button (do this if its a mine)
-        // if(button cords in mine locations) update the game to remove it and also decrease revealed buttons counts, then display image
-        // option 1 loop through rows and columns check if button has tag (null if not revealed yet)  then set text to -1 and set that object to -1 (probably should use object Integer)
-        // else scan and find display number of mines
-        //
-
         if(currGame.isInMineLocations(currButtonLocation)){ // mine at location
-
+            // plays sound on click
+            MediaPlayer mediaPlayerRebel = MediaPlayer.create(this, R.raw.find_rebel_noise);
+            mediaPlayerRebel.start();
 
             // display mine img on button
             int newWidth = button.getWidth();
@@ -163,11 +166,19 @@ public class GameActivity extends AppCompatActivity {
                 FragmentManager manager = getSupportFragmentManager();
                 MessageFragment dialog = new MessageFragment();
                 dialog.show(manager, "MessageDialog");
+
+                // increase times played
+                OptionsScreen.setTimesPlayed(this, OptionsScreen.getTimesPlayed(this)+1);
             }
         }
 
         else{ // no mine at location
+            // plays sound on click
+            MediaPlayer mediaPlayerNoRebel = MediaPlayer.create(this, R.raw.scan_sound);
+            mediaPlayerNoRebel.start();
+
             Button currButton = buttons[row][col];
+
             if(currButton.getTag() == null){ // not scanned yet
                 int minesInArea = currGame.scan(row, col);
                 button.setText(Integer.toString(minesInArea));
@@ -178,6 +189,7 @@ public class GameActivity extends AppCompatActivity {
                 String res = "Scans used: " + usedScans;
                 scansUsed.setText(res);
             }
+
         }
 
         // change text on button

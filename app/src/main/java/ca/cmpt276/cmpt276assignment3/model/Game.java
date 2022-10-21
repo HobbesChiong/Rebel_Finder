@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-// if button is clicked we check is that row/col is in the mine locations
+
+// game class that runs the game Rebel Finder for the user
 
 public class Game {
-    private static Game instance;
+
     int[][] grid; // rows x columns
     int mines;
     int rows;
@@ -15,13 +16,14 @@ public class Game {
 
     public Game(int rows, int columns, int mines){
         grid = new int[rows][columns];
-//        mineLocations = new int[mines][2];
+
         this.mines = mines;
         this.rows = rows;
         this.columns = columns;
         placeMines();
     }
 
+    // places mines by storing its coordinates in mineLocations
     private void placeMines(){
         Random r = new Random(); // referring to same obj? need to get a random number and detach from obj
         int c = 1; // count of added mines
@@ -46,9 +48,8 @@ public class Game {
 
         }
     }
-//    private void startGame(){
-//        placeMines();
-//    }
+
+    // updates the game by removing the given mine which is the argument currLocation
     public void updateGame(int[] currLocation){
 
         for (int i = 0 ; i < mineLocations.size(); i++) {
@@ -59,10 +60,12 @@ public class Game {
         }
 
     }
+
+    // scans the rows and columns to check for mines
     public int scan(int row, int column){
         int res = 0;
         int[] currLocation = new int[2];
-        // loop over rows and ints
+
         // loop over row its rows
         for(int i = 0; i < columns; i++){
             currLocation[0] = row;
@@ -82,6 +85,7 @@ public class Game {
         return res;
     }
 
+    // checks if the current location has a hidden mine
     public boolean isInMineLocations(int[] currMineLocation){
         if(mineLocations.isEmpty()){
             return false;
@@ -97,18 +101,5 @@ public class Game {
         return false;
     }
 
-
-// might need unknown yet
-//    // Singleton Support
-//    // basis of this code is from https://www.youtube.com/watch?v=XqeKtX8Aa94
-//    private Game(){
-//
-//    }
-//    public static Game getInstance(){
-//        if (instance == null){
-//            instance = new Game();
-//        }
-//        return instance;
-//    }
 
 }
